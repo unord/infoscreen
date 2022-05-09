@@ -37,15 +37,18 @@ def start_browser():
     # Loading webdriver
 
     osDetect = platform.system() #Check to see if system is windows or osx
+    options = webdriver.ChromeOptions()
+    options.add_argument('start-maximized')
+    options.add_argument('--kiosk')
+    options.add_experimental_option("useAutomationExtension", False)
+    options.add_experimental_option("excludeSwitches", ["enable-automation"])
+    options.add_argument('disable-infobars')
     if osDetect == "Darwin": #osx
-        options = webdriver.ChromeOptions()
-        options.addArguments("--kiosk");
-        options.AddExcludedArguments("enable-automation")
+
         browser = webdriver.Chrome(executable_path="/Applications/Chromedriver", options=options)
 
     else: #windows
-        options = Options()
-        options.add_argument("--kiosk")
+
         try:
             browser = webdriver.Chrome(executable_path="C:\\Chrome\\Chromedriver.exe", options=options)
         except SessionNotCreatedException:
@@ -54,10 +57,8 @@ def start_browser():
         except WebDriverException:
             win_download_and_unzip(chromedriver_version_url, win_path)
             browser = webdriver.Chrome(executable_path="C:\\Chrome\\Chromedriver.exe", options=options)
-    browser.maximize_window()
     time.sleep(3)
     browser.get('https://unord.dk')
-    browser.fullscreen_window()
     return browser
 
 def check_office365_login_window(browser):
