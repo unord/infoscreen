@@ -97,12 +97,19 @@ def get_url(computername):
 
 def main():
     browser = chrome_browser.start_browser()
+    send_message_to_server(client_name, server_ip, server_port)
+    browser.get(get_url(client_name))
+    chrome_browser.check_office365_login_window(browser)
+    counter = 0
     while True:
+        send_message_to_server(client_name, server_ip, server_port)
         # reboot_next()
         # reboot_scheduel()
-        send_message_to_server(client_name, server_ip, server_port)
-        browser.get(get_url(client_name))
-        chrome_browser.check_office365_login_window(browser)
+        if counter == 15:
+            browser.get(get_url(client_name))
+            chrome_browser.check_office365_login_window(browser)
+            counter = 0
+        counter += 1
         time.sleep(45)
 
 
