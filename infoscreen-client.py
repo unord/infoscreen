@@ -2,6 +2,10 @@ import socket
 import os
 import datetime
 import configparser
+from configparser import MissingSectionHeaderError
+import time
+
+import chrome_browser
 
 server_ip = ""
 server_ip = socket.gethostbyname(socket.gethostname())
@@ -22,7 +26,7 @@ def send_message_to_server(message:str, ip:str, port:int):
         z = message
         s.sendall(z.encode())
         print(f'Message sent: {z}')
-        print('Trying to url')
+        print('Trying to get url')
         server_message = str(s.recv(1024))
         server_message = server_message.replace("b'", "")
         url = server_message.replace("'", "")
@@ -39,7 +43,7 @@ def send_message_to_server(message:str, ip:str, port:int):
         s.close()
         config = configparser.ConfigParser()
         config['DEFAULT'] = {'URL': url, 'REBOOT_SCHEDULE': reboot_scheduel,  'REBOOT_NEXT': reboot_next}
-        with open('config.ini', 'w') as configfile:
+        with open('infoscreen.ini', 'w') as configfile:
             config.write(configfile)
         return server_message
     except ConnectionRefusedError as e:
@@ -74,11 +78,32 @@ def convert_string_to_list(string):
     li = list(string.split(","))
     return li
 
+def get_url(computername):
+    config = configparser.ConfigParser()
+    config.sections()
+    try:
+        config.read('infoscreen.ini')
+    except MissingSectionHeaderError as e:
+        print(e)
+        return 'https://historyofyesterday.com/the-history-behind-the-404-error-missing-link-4f8824d63154'
+    try:
+        this_computer = config['DEFAULT']['url']
+    except:
+        this_computer = 'https://historyofyesterday.com/the-history-behind-the-404-error-missing-link-4f8824d63154'
+    return this_computer
+
+
+
 
 def main():
-    # reboot_next()
-    # reboot_scheduel()
-    send_message_to_server(client_name, server_ip, server_port)
+    browser = chrome_browser.start_browser()
+    while True:
+        # reboot_next()
+        # reboot_scheduel()
+        send_message_to_server(client_name, server_ip, server_port)
+        browser.get(get_url(client_name))
+        chrome_browser.check_office365_login_window(browser)
+        time.sleep(45)
 
 
 

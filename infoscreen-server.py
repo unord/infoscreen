@@ -1,8 +1,7 @@
 import socket
 import time
-
-from decouple import config
 import configparser
+from configparser import MissingSectionHeaderError
 
 
 
@@ -39,7 +38,11 @@ def start_server(port:int):
 def get_infoscreen_url(computer_name):
     config = configparser.ConfigParser()
     config.sections()
-    config.read('config.ini')
+    try:
+        config.read('config.ini')
+    except MissingSectionHeaderError:
+        return 'https://historyofyesterday.com/the-history-behind-the-404-error-missing-link-4f8824d63154'
+
     try:
         this_computer = config['DEFAULT'][computer_name]
     except:
