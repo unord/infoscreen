@@ -13,12 +13,25 @@ import platform
 import sys
 import datetime
 from decouple import config
+import configparser
+from configparser import MissingSectionHeaderError
 
 
 
 currentSite = "https://unord.dk"
 win_path = "c:/Chrome"
 chromedriver_version_url = "https://chromedriver.storage.googleapis.com/LATEST_RELEASE"
+
+config = configparser.ConfigParser()
+config.sections()
+config.read('data.ini')
+
+try:
+    office_user = config['DEFAULT']['OFFICE365_USER']
+    office_password = config['DEFAULT']['OFFICE365_PASSWORD']
+except:
+    office_user = 'nobody'
+    office_password = 'nobody'
 
 
 def win_download_and_unzip(chromedriver_version_url:str, extract_to='.'):
@@ -38,11 +51,18 @@ def start_browser():
 
     osDetect = platform.system() #Check to see if system is windows or osx
     options = webdriver.ChromeOptions()
-    options.add_argument('start-maximized')
-    options.add_argument('--kiosk')
     options.add_experimental_option("useAutomationExtension", False)
     options.add_experimental_option("excludeSwitches", ["enable-automation"])
-    options.add_argument('disable-infobars')
+    options.add_experimental_option('excludeSwitches', ['enable-logging'])
+    #options.add_argument("--disable-notifications")
+    options.add_argument('start-maximized')
+    options.add_argument('--kiosk')
+    options.add_argument('--no-sandbox')
+    #options.add_argument('disable-infobars')
+    #options.add_argument("--enable-save-password-bubble=false")
+    #options.add_argument("--disable-user-media-security=true")
+
+
     if osDetect == "Darwin": #osx
 
         browser = webdriver.Chrome(executable_path="/Applications/Chromedriver", options=options)
@@ -67,7 +87,7 @@ def check_office365_login_window(browser):
         input_username = browser.find_element_by_name("loginfmt")
         input_username.send_keys(Keys.F11)
         input_username = browser.find_element_by_name("loginfmt")
-        input_username.send_keys(config('OFFICE365_USER'))
+        input_username.send_keys(office_user)
     except NoSuchElementException as e:
         return e
 
@@ -76,7 +96,7 @@ def check_office365_login_window(browser):
     time.sleep(5)
     try:
         input_username = browser.find_element_by_name("passwd")
-        input_username.send_keys(config('OFFICE365_PASSWORD'))
+        input_username.send_keys(office_password)
     except NoSuchElementException as e:
         return e
 

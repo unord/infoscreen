@@ -7,12 +7,13 @@ import time
 
 import chrome_browser
 
-server_ip = ""
+#server_ip = "10.127.195.100"
 server_ip = socket.gethostbyname(socket.gethostname())
 server_port = 3125
 client_name = socket.gethostname()
 
 def reboot_computer(seconds:int):
+    print('!!!!!!!!! We are rebooting now !!!!!!!!!!!!!!')
     os.system(f"shutdown /r /t {seconds}")
 
 
@@ -20,22 +21,32 @@ def send_message_to_server(message:str, ip:str, port:int):
     try:
         print(f'Trying to connect to ip {ip} on {port}')
         s = socket.socket()
-        s.connect((ip, port))
+        try:
+            s.connect((ip, port))
+        except TimeoutError as e:
+            print('Connection failed')
+            print(e)
+            return "No Connection"
         print('Connection established')
         print('Atempting to send return message')
         z = message
         s.sendall(z.encode())
         print(f'Message sent: {z}')
         print('Trying to get url')
-        server_message = str(s.recv(1024))
+        try:
+            server_message = str(s.recv(1024))
+        except ConnectionResetError as e:
+            print('Connection failed')
+            print(e)
+            return "No Connection"
         server_message = server_message.replace("b'", "")
         url = server_message.replace("'", "")
         print(f'url: {url}')
         server_message = str(s.recv(1024))
         server_message = server_message.replace("b'", "")
         reboot_scheduel = server_message.replace("'", "")
-        print(f'Reboot Scheduel: {reboot_scheduel}')
-        print(convert_string_to_list(server_message))
+        print(f'Reboot Scheduel: {reboot_scheduel.replace(",", ", ")}')
+        #print(convert_string_to_list(server_message))
         server_message = str(s.recv(1024))
         server_message = server_message.replace("b'", "")
         reboot_next = server_message.replace("'", "")
@@ -66,12 +77,35 @@ def save_server_commands(this_url:str, this_reboot_scheduel:list, this_next_rebo
 def reboot_scheduel():
     now = datetime.datetime.now()
     current_time = f'{str(now.hour)}:{str(now.minute)}'
-    print(current_time)
+    config = configparser.ConfigParser()
+    config.sections()
+    config.read('infoscreen.ini')
+
+    try:
+        this_scheduel = config['DEFAULT']['reboot_schedule']
+    except:
+        this_scheduel = 'No reboot time found'
+
+    schedule_list = convert_string_to_list(this_scheduel)
+
+    for item in schedule_list:
+        if item == current_time:
+            reboot_computer(1)
 
 def reboot_next():
     now = datetime.datetime.now()
     current_time = f'{str(now.hour)}:{str(now.minute)} {now.day}/{now.month}-{now.year}'
-    print(current_time)
+    config = configparser.ConfigParser()
+    config.sections()
+    config.read('infoscreen.ini')
+    this_scheduel = 'ups'
+    try:
+        this_scheduel = config['DEFAULT']['REBOOT_NEXT']
+    except:
+        this_scheduel = 'No reboot time found'
+    if this_scheduel == current_time:
+        reboot_computer(1)
+
 
 
 def convert_string_to_list(string):
@@ -103,8 +137,8 @@ def main():
     counter = 0
     while True:
         send_message_to_server(client_name, server_ip, server_port)
-        # reboot_next()
-        # reboot_scheduel()
+        reboot_next()
+        reboot_scheduel()
         if counter == 15:
             browser.get(get_url(client_name))
             chrome_browser.check_office365_login_window(browser)
