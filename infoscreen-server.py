@@ -3,7 +3,13 @@ import socket
 import time
 import configparser
 from configparser import MissingSectionHeaderError
-import psycopg2
+try:
+    import psycopg2
+except ImportError as e:
+    print("psycopg2 not installed, please install it")
+    print(e)
+    time.sleep(6000)
+
 
 
 
@@ -16,8 +22,7 @@ try:
 except MissingSectionHeaderError:
     print('db.ini not found')
 
-psql_database:str
-
+psql_database :str
 psql_database = config['DEFAULT']['psql_database']
 psql_user = config['DEFAULT']['psql_user']
 psql_password = config['DEFAULT']['psql_password']

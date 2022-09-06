@@ -7,7 +7,7 @@ import time
 
 import chrome_browser
 
-#server_ip = "10.127.195.100"
+server_ip = "10.127.195.100"
 server_ip = socket.gethostbyname(socket.gethostname())
 server_port = 3125
 client_name = socket.gethostname()
@@ -17,12 +17,12 @@ def reboot_computer(seconds:int):
     os.system(f"shutdown /r /t {seconds}")
 
 
-def send_message_to_server(message:str, ip:str, port:int):
+def send_message_to_server(message:str, this_ip:str, this_port:int):
     try:
-        print(f'Trying to connect to ip {ip} on {port}')
+        print(f'Trying to connect to ip {this_ip} on {this_port}')
         s = socket.socket()
         try:
-            s.connect((ip, port))
+            s.connect((this_ip, this_port))
         except TimeoutError as e:
             print('Connection failed')
             print(e)

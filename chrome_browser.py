@@ -29,13 +29,14 @@ config.read('data.ini')
 try:
     office_user = config['DEFAULT']['OFFICE365_USER']
     office_password = config['DEFAULT']['OFFICE365_PASSWORD']
-except:
+except Exception as e:
+    print(e)
     office_user = 'nobody'
     office_password = 'nobody'
 
 
 def win_download_and_unzip(chromedriver_version_url:str, extract_to='.'):
-    download_url:str
+    download_url :str
 
     file = urllib.request.urlopen(chromedriver_version_url)
     for line in file:
@@ -50,14 +51,19 @@ def start_browser():
     # Loading webdriver
 
     osDetect = platform.system() #Check to see if system is windows or osx
+
     options = webdriver.ChromeOptions()
     options.add_experimental_option("useAutomationExtension", False)
     options.add_experimental_option("excludeSwitches", ["enable-automation"])
-    options.add_experimental_option('excludeSwitches', ['enable-logging'])
+    prefs = {"credentials_enable_service": False,
+             "profile.password_manager_enabled": False}
+    options.add_experimental_option("prefs", prefs)
+    #options.add_experimental_option('excludeSwitches', ['enable-logging'])
+
     #options.add_argument("--disable-notifications")
-    options.add_argument('start-maximized')
+    #options.add_argument('start-maximized')
     options.add_argument('--kiosk')
-    options.add_argument('--no-sandbox')
+    #options.add_argument('--no-sandbox')
     #options.add_argument('disable-infobars')
     #options.add_argument("--enable-save-password-bubble=false")
     #options.add_argument("--disable-user-media-security=true")
@@ -84,27 +90,27 @@ def start_browser():
 def check_office365_login_window(browser):
     time.sleep(5)
     try:
-        input_username = browser.find_element_by_name("loginfmt")
+        input_username = browser.find_element("name", "loginfmt")
         input_username.send_keys(Keys.F11)
-        input_username = browser.find_element_by_name("loginfmt")
+        input_username = browser.find_element("name", "loginfmt")
         input_username.send_keys(office_user)
     except NoSuchElementException as e:
         return e
 
-    next_button = browser.find_element_by_id('idSIButton9')
+    next_button = browser.find_element("id", 'idSIButton9')
     next_button.click()
     time.sleep(5)
     try:
-        input_username = browser.find_element_by_name("passwd")
+        input_username = browser.find_element("name", "passwd")
         input_username.send_keys(office_password)
     except NoSuchElementException as e:
         return e
 
-    next_button = browser.find_element_by_id('idSIButton9')
+    next_button = browser.find_element("id", 'idSIButton9')
     next_button.click()
     time.sleep(5)
     try:
-        next_button = browser.find_element_by_id('idSIButton9')
+        next_button = browser.find_element("id", 'idSIButton9')
         next_button.click()
     except NoSuchElementException as e:
         return e
@@ -124,5 +130,6 @@ if __name__ == "__main__":
         print("Browser connection worked")
         time.sleep(10)
         browser.close()
-    except:
-        print("Something went wrong")
+    except Exception as e:
+        print("Something went wrong: {}".format(e))
+        time.sleep(180)
