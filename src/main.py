@@ -5,8 +5,8 @@ import selenium_tools
 import infoscreen
 from selenium import webdriver
 
-username = config("0FFICE365_USER")
-password = config("0FFICE365_PASSWORD")
+username = config("OFFICE365_USER")
+password = config("OFFICE365_PASSWORD")
 
 def refresh_infoscreen_info(driver: webdriver) -> tuple:
     # Get correct infoscreen url and reboot schedule and restart browser every x minutes info
