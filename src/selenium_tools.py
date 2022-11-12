@@ -14,7 +14,7 @@ def get_webdriver() -> webdriver:
     options.add_experimental_option("prefs", prefs)
     options.add_argument('--kiosk')
 
-    options = webdriver.ChromeOptions()
+
     driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
     return driver
 
