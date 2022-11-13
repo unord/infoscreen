@@ -42,6 +42,24 @@
         "restart_browser_every_minutes": 60,
         "reboot_schedule":["01:00"]
       },
+       {
+        "computer_name":"UN-LTV-INFO-01",
+        "infoscreen_url": "https://efif.sharepoint.com/sites/unord-infoscreen?deviceid=9",
+        "restart_browser_every_minutes": 60,
+        "reboot_schedule":["01:00"]
+      },
+      {
+        "computer_name":"UN-LTV-INFO-02",
+        "infoscreen_url": "https://efif.sharepoint.com/sites/unord-infoscreen?deviceid=10",
+        "restart_browser_every_minutes": 60,
+        "reboot_schedule":["01:00"]
+      },
+      {
+        "computer_name":"UN-LTV-INFO-03",
+        "infoscreen_url": "https://efif.sharepoint.com/sites/unord-infoscreen?deviceid=11",
+        "restart_browser_every_minutes": 60,
+        "reboot_schedule":["01:00"]
+      },
       {
         "computer_name":"UN-MIL-INFO-01",
         "infoscreen_url": "https://efif.sharepoint.com/sites/unord-infoscreen?deviceid=21",
