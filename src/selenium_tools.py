@@ -45,7 +45,7 @@ def scroll_to_bottom(driver: webdriver) -> dict:
     return {'msg': 'Scrolled to bottom', 'success': True}
 
 def check_office365_login_window(driver, office_user: str, office_password: str) -> None:
-    time.sleep(5)
+    time.sleep(5) #sleep for 5 seconds
     try:
         input_username = driver.find_element("name", "loginfmt")
         try:
