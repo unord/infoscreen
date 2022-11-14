@@ -15,11 +15,12 @@ def refresh_infoscreen_info(driver: webdriver) -> tuple:
         url, reboot_schedule, restart_browser_every_minutes = infoscreen.search_jsonfile_for_computer_name(
             infoscreen.get_computer_name())
         print('We are using the infoscreen.json file')
-    except:
+    except Exception as e:
         url = 'https://unord.dk'
         reboot_schedule = '01:00'
         restart_browser_every_minutes = 60
         print('We are using the default values')
+        print(f'Error: {e}')
 
     # Go to infoscreen website
     try:
