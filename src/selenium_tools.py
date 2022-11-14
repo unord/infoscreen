@@ -1,6 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import NoSuchElementException, ElementNotInteractableException
 from webdriver_manager.chrome import ChromeDriverManager
 import time
 
@@ -48,7 +48,14 @@ def check_office365_login_window(driver, office_user: str, office_password: str)
     time.sleep(5)
     try:
         input_username = driver.find_element("name", "loginfmt")
-        input_username.send_keys(Keys.F11)
+        try:
+            input_username.send_keys(Keys.F11)
+        except ElementNotInteractableException as e:
+            print(f'Detected exception: {e}')
+            print('Waiting 5 seconds and trying again')
+            time.sleep(5)
+            print('Trying to send keys again')
+            input_username.send_keys(Keys.F11)
         input_username = driver.find_element("name", "loginfmt")
         input_username.send_keys(office_user)
     except NoSuchElementException as e:
