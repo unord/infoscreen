@@ -16,6 +16,7 @@ def reboot_computer(seconds:int) -> None:
 
 
 def int_less_than_10(number: int) -> str:
+    # If number is less than 10, add a 0 in front of it
     if number < 10:
         return f'0{number}'
     else:
