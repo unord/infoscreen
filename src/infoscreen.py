@@ -14,9 +14,16 @@ def reboot_computer(seconds:int) -> None:
     os.system(f"shutdown /r /t {seconds}")
 
 
+def int_less_than_10(number: int) -> str:
+    if number < 10:
+        return f'0{number}'
+    else:
+        return str(number)
+
+
 def reboot_scheduel(list_of_times: list) -> None:
     now = datetime.datetime.now()
-    current_time = f'{str(now.hour)}:{str(now.minute)}'
+    current_time = f'{int_less_than_10(now.hour)}:{int_less_than_10(now.minute)}'
     print(f'Current time: {current_time}, Reboot schedule: {list_of_times}')
     for item in list_of_times:
         if item == current_time:
