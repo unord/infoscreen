@@ -4,7 +4,7 @@
         "computer_name":"UN-CBV-INFO-01",
         "infoscreen_url": "https://efif.sharepoint.com/sites/unord-infoscreen?deviceid=7",
         "restart_browser_every_minutes": 60,
-        "reboot_schedule":["01:00"]
+        "reboot_schedule":["01:00", "13:58"]
       },
       {
         "computer_name":"UN-CBV-INFO-02",
