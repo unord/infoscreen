@@ -94,7 +94,7 @@
         "computer_name":"UN-POA-INFO-02",
         "infoscreen_url": "https://efif.sharepoint.com/sites/unord-infoscreen?deviceid=24",
         "restart_browser_every_minutes": 60,
-        "reboot_schedule":["01:00", "16:25"]
+        "reboot_schedule":["01:00"]
       },
       {
         "computer_name":"UN-RKV-INFO-01",
