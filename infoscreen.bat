@@ -1,2 +1,2 @@
-TASKLIST | FINDSTR chrome.exe || start cmd /k CALL "run.bat"
+TASKLIST | FINDSTR chrome.exe || start cmd /k CALL "H:\infoscreen\run.bat"
 EXIT
