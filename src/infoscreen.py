@@ -35,6 +35,7 @@ def reboot_scheduel(list_of_times: list) -> None:
 
 
 def search_jsonfile_for_computer_name(computer_name: str) -> tuple:
+    # Search json file for computer name
     with open(infoscreen_jsonfile, 'r') as f:
         data = json.load(f)
     infoscreens = data['infoscreens']
