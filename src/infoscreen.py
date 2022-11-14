@@ -2,7 +2,7 @@ import json
 import os
 import datetime
 
-infoscreen_jsonfile = 'infoscreens.json'
+infoscreen_jsonfile = 'H:\infoscreen\infoscreens.json'
 
 
 def get_computer_name() -> str:
