@@ -25,7 +25,7 @@ def int_less_than_10(number: int) -> str:
 
 
 def reboot_scheduel(list_of_times: list) -> None:
-    #
+    # Reboot computer at a specific time
     now = datetime.datetime.now()
     current_time = f'{int_less_than_10(now.hour)}:{int_less_than_10(now.minute)}'
     # print(f'Current time: {current_time}, Reboot schedule: {list_of_times}')
