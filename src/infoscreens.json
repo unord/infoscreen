@@ -70,7 +70,7 @@
         "computer_name":"UN-MIL-INFO-02",
         "infoscreen_url": "https://efif.sharepoint.com/sites/unord-infoscreen?deviceid=22",
         "restart_browser_every_minutes": 60,
-        "reboot_schedule":["01:00"]
+        "reboot_schedule": ["01:00", "15:39"]
       },
       {
         "computer_name":"UN-MIL-INFO-03",
