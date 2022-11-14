@@ -6,6 +6,7 @@ infoscreen_jsonfile = 'H:\infoscreen\src\infoscreens.json'
 
 
 def get_computer_name() -> str:
+    # Get computer name
     return os.environ['COMPUTERNAME']
 
 
