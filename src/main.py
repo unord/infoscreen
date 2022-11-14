@@ -43,8 +43,7 @@ def main():
 
     while True:
 
-
-        if counter != restart_browser_every_minutes:
+        if not counter == restart_browser_every_minutes:
             counter += 1
             infoscreen.reboot_scheduel(reboot_schedule)
 
