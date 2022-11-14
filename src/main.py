@@ -22,7 +22,7 @@ def refresh_infoscreen_info(driver: webdriver) -> tuple:
         print('We are using the default values')
         print(f'Error: {e}')
 
-    # Go to infoscreen website
+    # Try to go infoscreen website
     try:
         driver.get(url)
     except:
