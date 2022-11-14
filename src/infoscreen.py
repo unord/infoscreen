@@ -10,6 +10,7 @@ def get_computer_name() -> str:
 
 
 def reboot_computer(seconds:int) -> None:
+    # Reboot computer
     print('!!!!!!!!! We are rebooting now !!!!!!!!!!!!!!')
     os.system(f"shutdown /r /t {seconds}")
 
