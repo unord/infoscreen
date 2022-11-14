@@ -17,7 +17,7 @@ def reboot_computer(seconds:int) -> None:
 def reboot_scheduel(list_of_times: list) -> None:
     now = datetime.datetime.now()
     current_time = f'{str(now.hour)}:{str(now.minute)}'
-
+    print(f'Current time: {current_time}, Reboot schedule: {list_of_times}')
     for item in list_of_times:
         if item == current_time:
             reboot_computer(10)
