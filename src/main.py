@@ -4,6 +4,7 @@ import time
 import selenium_tools
 import infoscreen
 from selenium import webdriver
+from _datetime import datetime
 
 username = config("OFFICE365_USER")
 password = config("OFFICE365_PASSWORD")
@@ -61,4 +62,5 @@ def main():
 
 
 if __name__ == '__main__':
+    print(f'Infoscreen started at {datetime.now()}')
     main()
