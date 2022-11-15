@@ -27,7 +27,8 @@
    ![](readme_images/2022-11-13_10-30-46.png)
    7. Set action to `Start a program` and 
    
-   8. **Program/script**```
+   **Program/script**
+   ```
    %windir%\system32\cmd.exe
    ```
    
