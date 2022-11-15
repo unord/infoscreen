@@ -26,11 +26,13 @@
    6. Create an action
    ![](readme_images/2022-11-13_10-30-46.png)
    7. Set action to `Start a program` and 
-   ```Program/script
+   **Program/script**
+9. ```
    %windir%\system32\cmd.exe
    ```
    
-   ```Add-arguments
+   **Add-arguments**
+   ```
    /C start "" /MIN H:\infoscreen\infoscreen.bat
    ```
    ![](readme_images/2022-11-15_13-23-12.png)
