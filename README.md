@@ -25,8 +25,15 @@
    ![](readme_images/2022-11-13_10-28-33.png)
    6. Create an action
    ![](readme_images/2022-11-13_10-30-46.png)
-   7. Set action to `Start a program` and set the program to `H:\infoscreen\infoscreen.bat`
-   ![](readme_images/2022-11-13_10-31-55.png)
+   7. Set action to `Start a program` and 
+   ```Program/script
+   %windir%\system32\cmd.exe
+   ```
+   
+   ```Add-arguments
+   /C start "" /MIN H:\infoscreen\infoscreen.bat
+   ```
+   ![](readme_images/2022-11-15_13-23-12.png)
    8. Click `OK` to save the task
    ![](readme_images/2022-11-13_10-33-06.png)
 9. Reboot the computer and your infoscreen should be up and running
