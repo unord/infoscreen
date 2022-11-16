@@ -51,9 +51,10 @@ def check_office365_login_window(driver, office_user: str, office_password: str)
         try:
             input_username.send_keys(Keys.F11)
         except ElementNotInteractableException as e:
+            driver.refesh()
             print(f'Detected exception: {e}')
-            print('Waiting 5 seconds and trying again')
-            time.sleep(5)
+            print('Waiting 30 seconds and trying again')
+            time.sleep(30)
             print('Trying to send keys again')
             input_username.send_keys(Keys.F11)
         input_username = driver.find_element("name", "loginfmt")
