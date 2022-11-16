@@ -1,6 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-from selenium.common.exceptions import NoSuchElementException, ElementNotInteractableException
+from selenium.common.exceptions import NoSuchElementException, ElementNotInteractableException, StaleElementReferenceException
 from webdriver_manager.chrome import ChromeDriverManager
 import time
 
@@ -50,7 +50,7 @@ def check_office365_login_window(driver, office_user: str, office_password: str)
         input_username = driver.find_element("name", "loginfmt")
         try:
             input_username.send_keys(Keys.F11)
-        except ElementNotInteractableException as e:
+        except Exception as e:
             driver.refesh()
             print(f'Detected exception: {e}')
             print('Waiting 30 seconds and trying again')
@@ -60,6 +60,10 @@ def check_office365_login_window(driver, office_user: str, office_password: str)
         input_username = driver.find_element("name", "loginfmt")
         input_username.send_keys(office_user)
     except NoSuchElementException as e:
+        print(f'No such element: {e}')
+        return e
+    except StaleElementReferenceException as e:
+        print(f'Stale element: {e}')
         return e
 
     next_button = driver.find_element("id", 'idSIButton9')
