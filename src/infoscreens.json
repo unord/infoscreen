@@ -4,67 +4,67 @@
         "computer_name":"UN-CBV-INFO-01",
         "infoscreen_url": "https://efif.sharepoint.com/sites/unord-infoscreen?deviceid=7",
         "restart_browser_every_minutes": 60,
-        "reboot_schedule":["22:12"]
+        "reboot_schedule":["01:12"]
       },
       {
         "computer_name":"UN-CBV-INFO-02",
         "infoscreen_url": "https://efif.sharepoint.com/sites/unord-infoscreen?deviceid=25",
         "restart_browser_every_minutes": 60,
-        "reboot_schedule":["22:12"]
+        "reboot_schedule":["01:12"]
       },
       {
         "computer_name":"UN-HDV-INFO-01",
         "infoscreen_url": "https://efif.sharepoint.com/sites/unord-infoscreen?deviceid=12",
         "restart_browser_every_minutes": 60,
-        "reboot_schedule":["22:12"]
+        "reboot_schedule":["01:12"]
       },
       {
         "computer_name":"UN-HDV-INFO-02",
         "infoscreen_url": "https://efif.sharepoint.com/sites/unord-infoscreen?deviceid=17",
         "restart_browser_every_minutes": 60,
-        "reboot_schedule":["22:12"]
+        "reboot_schedule":["01:12"]
       },
       {
         "computer_name":"UN-HHV-INFO-01",
         "infoscreen_url": "https://efif.sharepoint.com/sites/unord-infoscreen?deviceid=13",
         "restart_browser_every_minutes": 60,
-        "reboot_schedule":["22:12"]
+        "reboot_schedule":["01:12"]
       },
       {
         "computer_name":"UN-HHV-INFO-02",
         "infoscreen_url": "https://efif.sharepoint.com/sites/unord-infoscreen?deviceid=16",
         "restart_browser_every_minutes": 60,
-        "reboot_schedule":["22:12"]
+        "reboot_schedule":["01:12"]
       },
       {
         "computer_name":"UN-HHV-INFO-03",
         "infoscreen_url": "https://efif.sharepoint.com/sites/unord-infoscreen?deviceid=18",
         "restart_browser_every_minutes": 60,
-        "reboot_schedule":["22:12"]
+        "reboot_schedule":["01:12"]
       },
        {
         "computer_name":"UN-LTV-INFO-01",
         "infoscreen_url": "https://efif.sharepoint.com/sites/unord-infoscreen?deviceid=9",
         "restart_browser_every_minutes": 60,
-        "reboot_schedule":["22:12"]
+        "reboot_schedule":["01:12"]
       },
       {
         "computer_name":"UN-LTV-INFO-02",
         "infoscreen_url": "https://efif.sharepoint.com/sites/unord-infoscreen?deviceid=10",
         "restart_browser_every_minutes": 60,
-        "reboot_schedule":["22:12"]
+        "reboot_schedule":["01:12"]
       },
       {
         "computer_name":"UN-LTV-INFO-03",
         "infoscreen_url": "https://efif.sharepoint.com/sites/unord-infoscreen?deviceid=11",
         "restart_browser_every_minutes": 60,
-        "reboot_schedule":["22:12"]
+        "reboot_schedule":["01:12"]
       },
       {
         "computer_name":"UN-MIL-INFO-01",
         "infoscreen_url": "https://efif.sharepoint.com/sites/unord-infoscreen?deviceid=21",
         "restart_browser_every_minutes": 60,
-        "reboot_schedule":["22:12"]
+        "reboot_schedule":["01:12"]
       },
       {
         "computer_name":"UN-MIL-INFO-02",
@@ -76,73 +76,73 @@
         "computer_name":"UN-MIL-INFO-03",
         "infoscreen_url": "https://efif.sharepoint.com/sites/unord-infoscreen?deviceid=20",
         "restart_browser_every_minutes": 60,
-        "reboot_schedule":["22:12"]
+        "reboot_schedule":["01:12"]
       },
       {
         "computer_name":"UN-MIL-INFO-04",
         "infoscreen_url": "https://efif.sharepoint.com/sites/unord-infoscreen?deviceid=23",
         "restart_browser_every_minutes": 60,
-        "reboot_schedule":["22:12"]
+        "reboot_schedule":["01:12"]
       },
       {
         "computer_name":"UN-POA-INFO-01",
         "infoscreen_url": "https://docs.google.com/presentation/d/e/2PACX-1vR2T67Pw8V1EelmVrgpCL3I8fubzfwmTa140qvOYN3Yfo8-UlnGjC5nvPOUj9jOnNi931vwawoyzkMC/pub?start=true&loop=true&delayms=3000",
         "restart_browser_every_minutes": 60,
-        "reboot_schedule":["22:12"]
+        "reboot_schedule":["01:12"]
       },
       {
         "computer_name":"UN-POA-INFO-02",
         "infoscreen_url": "https://efif.sharepoint.com/sites/unord-infoscreen?deviceid=24",
         "restart_browser_every_minutes": 60,
-        "reboot_schedule":["22:12"]
+        "reboot_schedule":["01:12"]
       },
       {
         "computer_name":"UN-RKV-INFO-01",
         "infoscreen_url": "https://efif.sharepoint.com/sites/unord-infoscreen?deviceid=19",
         "restart_browser_every_minutes": 60,
-        "reboot_schedule":["22:12"]
+        "reboot_schedule":["01:12"]
       },
       {
         "computer_name":"UN-TMA-INFO-01",
         "infoscreen_url": "https://efif.sharepoint.com/sites/unord-infoscreen?deviceid=8",
         "restart_browser_every_minutes": 60,
-        "reboot_schedule":["22:12"]
+        "reboot_schedule":["01:12"]
       },
       {
         "computer_name":"UN-TMA-INFO-02",
         "infoscreen_url": "https://efif.sharepoint.com/sites/unord-infoscreen?deviceid=14",
         "restart_browser_every_minutes": 60,
-        "reboot_schedule":["22:12"]
+        "reboot_schedule":["01:12"]
       },
       {
         "computer_name":"UN-TMA-INFO-03",
         "infoscreen_url": "https://efif.sharepoint.com/sites/unord-infoscreen?deviceid=4",
         "restart_browser_every_minutes": 60,
-        "reboot_schedule":["22:12"]
+        "reboot_schedule":["01:12"]
       },
       {
         "computer_name":"UN-TMA-INFO-04",
         "infoscreen_url": "https://efif.sharepoint.com/sites/unord-infoscreen?deviceid=2",
         "restart_browser_every_minutes": 60,
-        "reboot_schedule":["22:12"]
+        "reboot_schedule":["01:12"]
       },
       {
         "computer_name":"UN-TMA-INFO-05",
         "infoscreen_url": "https://efif.sharepoint.com/sites/unord-infoscreen?deviceid=5",
         "restart_browser_every_minutes": 60,
-        "reboot_schedule":["22:12"]
+        "reboot_schedule":["01:12"]
       },
       {
         "computer_name":"UN-TMA-INFO-06",
         "infoscreen_url": "https://efif.sharepoint.com/sites/unord-infoscreen?deviceid=15",
         "restart_browser_every_minutes": 60,
-        "reboot_schedule":["22:12"]
+        "reboot_schedule":["01:12"]
       },
       {
         "computer_name":"UN-TMA-INFO-07",
         "infoscreen_url": "https://efif.sharepoint.com/sites/unord-infoscreen?deviceid=3",
         "restart_browser_every_minutes": 60,
-        "reboot_schedule":["22:12"]
+        "reboot_schedule":["01:12"]
       }
     ]
 }
