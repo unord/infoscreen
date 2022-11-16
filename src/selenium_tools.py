@@ -14,7 +14,6 @@ def get_webdriver() -> webdriver:
     options.add_experimental_option("prefs", prefs)
     options.add_argument('--kiosk')
 
-
     driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
     return driver
 
@@ -44,8 +43,9 @@ def scroll_to_bottom(driver: webdriver) -> dict:
 
     return {'msg': 'Scrolled to bottom', 'success': True}
 
+
 def check_office365_login_window(driver, office_user: str, office_password: str) -> None:
-    time.sleep(5) #sleep for 5 seconds
+    time.sleep(5)  # sleep for 5 seconds
     try:
         input_username = driver.find_element("name", "loginfmt")
         try:
