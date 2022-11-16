@@ -5,9 +5,27 @@ import selenium_tools
 import infoscreen
 from selenium import webdriver
 from _datetime import datetime
+import os
+import unord_mail
+import traceback
 
 username = config("OFFICE365_USER")
 password = config("OFFICE365_PASSWORD")
+
+def mail_error(e, t):
+    mail_subject = f'{infoscreen.get_computer_name()} (Infoscreen Exception): {e}'
+    mail_msg = f'traceback.format_exc():\n {t}'
+
+    unord_mail.send_email_with_attachments(config('EMAIL_USER'),
+                                   [f'gore@unord.dk'],
+                                   mail_subject,
+                                   mail_msg,
+                                   [],
+                                   [],
+                                   [])
+
+
+
 
 def refresh_infoscreen_info(driver: webdriver) -> tuple:
     # Get correct infoscreen url and reboot schedule and restart browser every x minutes info
@@ -32,33 +50,37 @@ def refresh_infoscreen_info(driver: webdriver) -> tuple:
 
 
 def main():
-    counter = 0
 
-    # start browser
     try:
+        counter = 0
+
+        # start browser
         driver = selenium_tools.get_webdriver()
+
+        url, reboot_schedule, restart_browser_every_minutes = refresh_infoscreen_info(driver)
+
+        while True:
+
+            if not counter == restart_browser_every_minutes:
+                counter += 1
+                infoscreen.reboot_scheduel(reboot_schedule)
+
+                # if counter diveds by 10
+                if counter % 10 == 0:
+                    url, reboot_schedule, restart_browser_every_minutes = refresh_infoscreen_info(driver)
+
+                # Check if we are logged in to Office 365
+                selenium_tools.check_office365_login_window(driver, username, password)
+                time.sleep(45)
+                counter += 1
+            elif counter == restart_browser_every_minutes:
+                driver.quit()
+                main()
+
     except Exception as e:
+        t = traceback.format_exc()
+        mail_error(e, t)
         sys.exit()
-
-    url, reboot_schedule, restart_browser_every_minutes = refresh_infoscreen_info(driver)
-
-    while True:
-
-        if not counter == restart_browser_every_minutes:
-            counter += 1
-            infoscreen.reboot_scheduel(reboot_schedule)
-
-            # if counter diveds by 10
-            if counter % 10 == 0:
-                url, reboot_schedule, restart_browser_every_minutes = refresh_infoscreen_info(driver)
-
-            # Check if we are logged in to Office 365
-            selenium_tools.check_office365_login_window(driver, username, password)
-            time.sleep(45)
-            counter += 1
-        elif counter == restart_browser_every_minutes:
-            driver.quit()
-            main()
 
 
 if __name__ == '__main__':
