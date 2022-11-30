@@ -2,3 +2,4 @@ packaging==21.3
 python-decouple==3.6
 selenium==4.6.0
 webdriver-manager==3.8.4
+wmi==1.4.9
