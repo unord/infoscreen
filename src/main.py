@@ -86,6 +86,7 @@ def main():
         f = wmi.WMI()
         for process in f.Win32_Process(name="chrome.exe"):
             process.Terminate()
+        mail_error(e, traceback.format_exc())
         sys.exit()
 
     except Exception as e:
