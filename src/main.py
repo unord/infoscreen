@@ -8,6 +8,8 @@ from _datetime import datetime
 import os
 import unord_mail
 import traceback
+from selenium.common.exceptions import WebDriverException
+import wmi
 
 username = config("OFFICE365_USER")
 password = config("OFFICE365_PASSWORD")
@@ -33,6 +35,9 @@ def refresh_infoscreen_info(driver: webdriver) -> tuple:
         url, reboot_schedule, restart_browser_every_minutes = infoscreen.search_jsonfile_for_computer_name(
             infoscreen.get_computer_name())
         print('We are using the infoscreen.json file')
+
+
+
     except Exception as e:
         url = 'https://unord.dk'
         reboot_schedule = '01:00'
@@ -76,6 +81,13 @@ def main():
             elif counter == restart_browser_every_minutes:
                 driver.quit()
                 main()
+
+    except WebDriverException as e:
+        f = wmi.WMI()
+        for process in f.Win32_Process(name="chrome.exe"):
+            process.Terminate()
+        mail_error(e, traceback.format_exc())
+        sys.exit()
 
     except Exception as e:
         t = traceback.format_exc()
