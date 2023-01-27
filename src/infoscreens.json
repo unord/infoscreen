@@ -110,7 +110,7 @@
         "infoscreen_url": "https://efif.sharepoint.com/sites/unord-infoscreen?deviceid=24",
         "restart_browser_every_minutes": 120,
         "reboot_schedule":["01:12"],
-        "uptime_kuma_url": ""
+        "uptime_kuma_url": "https://rpa-local.unord.dk/api/push/cmPBkooCEo?status=up&msg=OK&ping="
       },
       {
         "computer_name":"UN-RKV-INFO-01",
