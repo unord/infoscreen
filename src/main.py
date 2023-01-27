@@ -18,7 +18,7 @@ password = config("OFFICE365_PASSWORD")
 def call_uptime_kuma(web_address: str):
 
     try:
-        response = requests.get(web_address)
+        response = requests.get(web_address, verify=False)
 
         print(response.status_code)
         print(response.text)
