@@ -41,7 +41,7 @@ def search_jsonfile_for_computer_name(computer_name: str) -> tuple:
     infoscreens = data['infoscreens']
     for computer in infoscreens:
         if computer['computer_name'] == computer_name:
-            return computer['infoscreen_url'], computer['reboot_schedule'], computer['restart_browser_every_minutes']
+            return computer['infoscreen_url'], computer['reboot_schedule'], computer['restart_browser_every_minutes'], computer['uptime_kuma_url']
 
 
 def main():

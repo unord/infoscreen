@@ -10,9 +10,21 @@ import unord_mail
 import traceback
 from selenium.common.exceptions import WebDriverException
 import wmi
+import requests
 
 username = config("OFFICE365_USER")
 password = config("OFFICE365_PASSWORD")
+
+def call_uptime_kuma(web_address: str):
+
+    try:
+        response = requests.get(web_address)
+
+        print(response.status_code)
+        print(response.text)
+    except Exception as e:
+        print(e)
+
 
 def mail_error(e, t):
     mail_subject = f'{infoscreen.get_computer_name()} (Infoscreen Exception): {e}'
@@ -32,7 +44,7 @@ def mail_error(e, t):
 def refresh_infoscreen_info(driver: webdriver) -> tuple:
     # Get correct infoscreen url and reboot schedule and restart browser every x minutes info
     try:
-        url, reboot_schedule, restart_browser_every_minutes = infoscreen.search_jsonfile_for_computer_name(
+        url, reboot_schedule, restart_browser_every_minutes, uptime_kuma_url = infoscreen.search_jsonfile_for_computer_name(
             infoscreen.get_computer_name())
         print('We are using the infoscreen.json file')
 
@@ -42,6 +54,7 @@ def refresh_infoscreen_info(driver: webdriver) -> tuple:
         url = 'https://unord.dk'
         reboot_schedule = '01:00'
         restart_browser_every_minutes = 60
+        uptime_kuma_url = url
         print('We are using the default values')
         print(f'Error: {e}')
 
@@ -51,7 +64,7 @@ def refresh_infoscreen_info(driver: webdriver) -> tuple:
     except:
         sys.exit()
 
-    return url, reboot_schedule, restart_browser_every_minutes
+    return url, reboot_schedule, restart_browser_every_minutes, uptime_kuma_url
 
 
 def main():
@@ -62,7 +75,7 @@ def main():
         # start browser
         driver = selenium_tools.get_webdriver()
 
-        url, reboot_schedule, restart_browser_every_minutes = refresh_infoscreen_info(driver)
+        url, reboot_schedule, restart_browser_every_minutes, uptime_kuma_url = refresh_infoscreen_info(driver)
 
         while True:
 
@@ -76,6 +89,7 @@ def main():
 
                 # Check if we are logged in to Office 365
                 selenium_tools.check_office365_login_window(driver, username, password)
+                call_uptime_kuma(uptime_kuma_url)
                 time.sleep(45)
                 counter += 1
             elif counter == restart_browser_every_minutes:
