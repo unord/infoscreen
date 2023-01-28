@@ -75,7 +75,8 @@ def main():
         # start browser
         driver = selenium_tools.get_webdriver()
 
-        url, reboot_schedule, restart_browser_every_minutes, uptime_kuma_url = refresh_infoscreen_info(driver)
+        url, reboot_schedule, restart_browser_every_minutes, uptime_kuma_url = infoscreen.search_jsonfile_for_computer_name(
+            infoscreen.get_computer_name())
 
         while True:
 
