@@ -84,8 +84,8 @@ def main():
                 infoscreen.reboot_scheduel(reboot_schedule)
 
                 # if counter diveds by 10
-                if counter % 10 == 0:
-                    url, reboot_schedule, restart_browser_every_minutes = refresh_infoscreen_info(driver)
+                #if counter % 10 == 0:
+                url, reboot_schedule, restart_browser_every_minutes = refresh_infoscreen_info(driver)
 
                 # Check if we are logged in to Office 365
                 selenium_tools.check_office365_login_window(driver, username, password)
