@@ -79,6 +79,7 @@ def main():
 
         url, reboot_schedule, restart_browser_every_minutes, uptime_kuma_url = infoscreen.search_jsonfile_for_computer_name(
             infoscreen.get_computer_name())
+        driver.get(url)
 
         while True:
             if selenium_tools.check_if_text_is_in_page(driver, 'Hvis problemet fortsætter, kan du kontakte webstedets administrator og give dem oplysningerne i Tekniske oplysninger.'):
