@@ -87,6 +87,8 @@ def check_office365_login_window(driver, office_user: str, office_password: str)
         return e
 
 def check_if_text_is_in_page(driver: webdriver, text_to_search: str) -> bool:
+
+    # Get the HTML of the page
     html = driver.page_source
 
     # Parse the HTML using BeautifulSoup
@@ -97,9 +99,6 @@ def check_if_text_is_in_page(driver: webdriver, text_to_search: str) -> bool:
 
     # Check if the text was found
     result = True if text else False
-
-    # Close the webdriver
-    driver.quit()
 
     return result
 
