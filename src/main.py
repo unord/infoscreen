@@ -61,6 +61,7 @@ def refresh_infoscreen_info(driver: webdriver) -> tuple:
     # Try to go infoscreen website
     try:
         driver.get(url)
+        time.sleep(15)
     except:
         sys.exit()
 
