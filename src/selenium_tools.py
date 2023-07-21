@@ -2,6 +2,8 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import NoSuchElementException, ElementNotInteractableException, StaleElementReferenceException
 from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.common.by import By
+from bs4 import BeautifulSoup
 import time
 
 
@@ -83,6 +85,22 @@ def check_office365_login_window(driver, office_user: str, office_password: str)
         next_button.click()
     except NoSuchElementException as e:
         return e
+
+def check_if_text_is_in_page(driver: webdriver, text_to_search: str) -> bool:
+
+    # Get the HTML of the page
+    html = driver.page_source
+
+    # Parse the HTML using BeautifulSoup
+    soup = BeautifulSoup(html, 'html.parser')
+
+    # Search for the desired text
+    text = soup.find(text=text_to_search)
+
+    # Check if the text was found
+    result = True if text else False
+
+    return result
 
 
 def main():

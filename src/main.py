@@ -61,10 +61,12 @@ def refresh_infoscreen_info(driver: webdriver) -> tuple:
     # Try to go infoscreen website
     try:
         driver.get(url)
+        time.sleep(15)
     except:
         sys.exit()
 
     return url, reboot_schedule, restart_browser_every_minutes, uptime_kuma_url
+
 
 
 def main():
@@ -77,16 +79,20 @@ def main():
 
         url, reboot_schedule, restart_browser_every_minutes, uptime_kuma_url = infoscreen.search_jsonfile_for_computer_name(
             infoscreen.get_computer_name())
+        driver.get(url)
 
         while True:
+            if selenium_tools.check_if_text_is_in_page(driver, 'Hvis problemet fortsætter, kan du kontakte webstedets administrator og give dem oplysningerne i Tekniske oplysninger.'):
+                driver.quit()
+                main()
 
             if not counter == restart_browser_every_minutes:
                 counter += 1
                 infoscreen.reboot_scheduel(reboot_schedule)
 
                 # if counter diveds by 10
-                #if counter % 10 == 0:
-                url, reboot_schedule, restart_browser_every_minutes, uptime_kuma_url = refresh_infoscreen_info(driver)
+                if counter % 10 == 0:
+                    url, reboot_schedule, restart_browser_every_minutes, uptime_kuma_url = refresh_infoscreen_info(driver)
 
                 # Check if we are logged in to Office 365
                 selenium_tools.check_office365_login_window(driver, username, password)
