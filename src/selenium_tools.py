@@ -10,7 +10,7 @@ import time
 
 
 def get_webdriver() -> webdriver:
-    chrome_options = webdriver.ChromeOptions()
+    chrome_options = ChromeOptions()
     chrome_options.add_experimental_option("useAutomationExtension", False)
     chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
     prefs = {"credentials_enable_service": False,
