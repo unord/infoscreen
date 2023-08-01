@@ -21,8 +21,8 @@ def get_webdriver() -> webdriver:
     try:
         driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=chrome_options)
     except:
-        driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager(driver_version="114.0.5735.90").install()), options=chrome_options)
-
+        driver = webdriver.Chrome(service=Service(ChromeDriverManager(driver_version="114.0.5735.90").install()),options=chrome_options,)
+        
     return driver
 
 def scroll_to_bottom(driver: webdriver) -> dict:
