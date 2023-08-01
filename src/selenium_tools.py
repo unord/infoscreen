@@ -18,8 +18,23 @@ def get_webdriver() -> webdriver:
     chrome_options.add_experimental_option("prefs", prefs)
     chrome_options.add_argument('--kiosk')
 
-    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=chrome_options)
+    try:
+        driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=chrome_options)
+    except:
+        driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager(driver_version="114.0.5735.90").install()), options=chrome_options)
+
     return driver
+
+def get_webdriver() -> webdriver:
+chrome_options = webdriver.ChromeOptions()
+try:
+driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=chrome_options)
+print("Chromedriver found.")
+except:
+driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager(driver_version="114.0.5735.90").install()),
+options=chrome_options)
+print("Chromedriver version 114.0.5735.90 used.")
+return driver
 
 
 def scroll_to_bottom(driver: webdriver) -> dict:
