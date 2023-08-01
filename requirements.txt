@@ -3,6 +3,6 @@ packaging==21.3
 python-decouple==3.6
 pywin32==305
 requests==2.31.0
-selenium==4.10.0
+selenium==4.11.2
 webdriver-manager==4.0.0
 wmi==1.4.9
