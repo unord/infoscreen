@@ -23,7 +23,7 @@ def get_webdriver() -> webdriver:
     except:
         driver_path = ChromeDriverManager("114.0.5735.90").install()
         service = Service(driver_path)
-        driver = webdriver.Chrome(service=service(ChromeDriverManager(driver_version="114.0.5735.90").install()),options=chrome_options,)
+        driver = webdriver.Chrome(service=service, options=chrome_options)
         
     return driver
 
