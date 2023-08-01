@@ -3,7 +3,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import NoSuchElementException, ElementNotInteractableException, StaleElementReferenceException
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.service import Service as ChromeService
+from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 from bs4 import BeautifulSoup
 import time
@@ -19,9 +19,11 @@ def get_webdriver() -> webdriver:
     chrome_options.add_argument('--kiosk')
 
     try:
-        driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=chrome_options)
+        driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
     except:
-        driver = webdriver.Chrome(service=Service(ChromeDriverManager(driver_version="114.0.5735.90").install()),options=chrome_options,)
+        driver_path = ChromeDriverManager("114.0.5735.90").install()
+        service = Service(driver_path)
+        driver = webdriver.Chrome(service=service(ChromeDriverManager(driver_version="114.0.5735.90").install()),options=chrome_options,)
         
     return driver
 
