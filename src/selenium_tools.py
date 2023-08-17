@@ -19,17 +19,17 @@ def get_webdriver() -> webdriver:
     chrome_options.add_argument('--kiosk')
 
     try:
-        #driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
-        driver = webdriver.Chrome(service=Service(), options=chrome_options)
+        driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
     except:
         try:
-            driver_path = ChromeDriverManager("114.0.5735.90").install()
-            service = Service(driver_path)
-            driver = webdriver.Chrome(service=service, options=chrome_options)
-        except: # use local driver at h:\chromedriver\chromedriver.exe
+            print('Trying to use local driver at h:\chromedriver\chromedriver.exe')
             driver_path = r'h:\chromedriver\chromedriver.exe'
             service = Service(driver_path)
-            #service = Service()
+            driver = webdriver.Chrome(service=service, options=chrome_options)
+        except:
+            print('Trying to use local driver at c:\chromedriver\chromedriver.exe')
+            driver_path = r'c:\chromedriver\chromedriver.exe'
+            service = Service(driver_path)
             driver = webdriver.Chrome(service=service, options=chrome_options)
 
 
