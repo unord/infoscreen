@@ -29,6 +29,7 @@ def get_webdriver() -> webdriver:
         except: # use local driver at h:\chromedriver\chromedriver.exe
             #driver_path = r'h:\chromedriver\chromedriver.exe'
             #service = Service(driver_path)
+            service = Service()
             driver = webdriver.Chrome(service=service, options=chrome_options)
 
 
