@@ -22,9 +22,15 @@ def get_webdriver() -> webdriver:
         #driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
         driver = webdriver.Chrome(service=Service(), options=chrome_options)
     except:
-        driver_path = ChromeDriverManager("114.0.5735.90").install()
-        service = Service(driver_path)
-        driver = webdriver.Chrome(service=service, options=chrome_options)
+        try:
+            driver_path = ChromeDriverManager("114.0.5735.90").install()
+            service = Service(driver_path)
+            driver = webdriver.Chrome(service=service, options=chrome_options)
+        except: # use local driver at h:\chromedriver\chromedriver.exe
+            driver_path = r'h:\chromedriver\chromedriver.exe'
+            service = Service(driver_path)
+            driver = webdriver.Chrome(service=service, options=chrome_options)
+
         
     return driver
 
