@@ -19,7 +19,8 @@ def get_webdriver() -> webdriver:
     chrome_options.add_argument('--kiosk')
 
     try:
-        driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
+        #driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
+        driver = webdriver.Chrome(service=Service(), options=chrome_options)
     except:
         driver_path = ChromeDriverManager("114.0.5735.90").install()
         service = Service(driver_path)
