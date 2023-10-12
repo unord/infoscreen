@@ -25,7 +25,7 @@ def get_webdriver() -> webdriver:
         driver = webdriver.Edge(service=EdgeService(EdgeChromiumDriverManager().install()), options=chrome_options)
     except Exception as e:
         print(f'Error: {e}')
-        time.sleep(600)
+        time.sleep(5)
         try:
             print('Trying to use local driver at h:\chromedriver\chromedriver.exe')
             driver_path = r'h:\chromedriver\chromedriver.exe'
