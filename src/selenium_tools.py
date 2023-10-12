@@ -21,6 +21,7 @@ def get_webdriver() -> webdriver:
     chrome_options.add_argument('--kiosk')
 
     try:
+        print('Trying to use Edgedriver')
         driver = webdriver.Edge(service=EdgeService(EdgeChromiumDriverManager().install()), options=chrome_options)
     except:
         try:
