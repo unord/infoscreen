@@ -5,6 +5,8 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options as ChromeOptions
+from selenium.webdriver.edge.service import Service as EdgeService
+from webdriver_manager.microsoft import EdgeChromiumDriverManager
 from bs4 import BeautifulSoup
 import time
 
@@ -19,7 +21,7 @@ def get_webdriver() -> webdriver:
     chrome_options.add_argument('--kiosk')
 
     try:
-        driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
+        driver = webdriver.Edge(service=EdgeService(EdgeChromiumDriverManager().install()), options=chrome_options)
     except:
         try:
             print('Trying to use local driver at h:\chromedriver\chromedriver.exe')

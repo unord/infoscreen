@@ -15,8 +15,8 @@ import requests
 username = config("OFFICE365_USER")
 password = config("OFFICE365_PASSWORD")
 
-def call_uptime_kuma(web_address: str):
 
+def call_uptime_kuma(web_address: str) -> None:
     try:
         response = requests.get(web_address, verify=False)
 
@@ -37,8 +37,6 @@ def mail_error(e, t):
                                    [],
                                    [],
                                    [])
-
-
 
 
 def refresh_infoscreen_info(driver: webdriver) -> tuple:
